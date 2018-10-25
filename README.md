@@ -1,9 +1,12 @@
 Steps
 
+
+
+
+
+
 1. Add service account key in creds/service_account_key.json
-
-2. Install git, terraform, helm, gcloud and kubectl wherever this is being run from
-
+2. Install git, terraform, helm, gcloud and kubectl wherever the terraform plan is being run from
 3. Initialise and apply terraform plan
 
 
