@@ -93,7 +93,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: helloworld-gateway
+  name: mygateway
 spec:
   selector:
     istio: ingressgateway # use istio default controller
@@ -113,7 +113,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - helloworld-gateway
+  - mygateway
   http:
   - match:
     - uri:
@@ -132,7 +132,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - helloworld-gateway
+  - mygateway
   http:
   - match:
     - uri:

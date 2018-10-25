@@ -73,8 +73,8 @@ resource "null_resource" "install_istio" {
 
   provisioner "local-exec" {
     command = <<EOT
-		echo "${base64decode(google_container_cluster.gke_cluster.master_auth.0.cluster_ca_certificate)}" > ca.crt;
-    kubectl config --kubeconfig=ci set-cluster k8s --server=$${K8S_SERVER} --certificate-authority=ca.crt
+      echo "${base64decode(google_container_cluster.gke_cluster.master_auth.0.cluster_ca_certificate)}" > ca.crt;
+      kubectl config --kubeconfig=ci set-cluster k8s --server=$${K8S_SERVER} --certificate-authority=ca.crt
       kubectl config --kubeconfig=ci set-credentials admin --username=$${K8S_USERNAME} --password=$${K8S_PASSWORD}
       kubectl config --kubeconfig=ci set-context k8s-ci --cluster=k8s --namespace=default --user=admin
       kubectl config --kubeconfig=ci use-context k8s-ci
@@ -88,8 +88,8 @@ resource "null_resource" "install_istio" {
       helm upgrade istio kubernetes-istio-module/istio --install --wait \
                 --namespace istio-system \
 		          --version $${ISTIO_VERSION}
-istioctl kube-inject -f helloworld.yaml -o helloworld-istio.yaml      
-kubectl create -f helloworld-istio.yaml
+      istioctl kube-inject -f mydeployment.yaml -o mydeployment-istio.yaml      
+      kubectl create -f mydeployment-istio.yaml
 
 EOT
 
