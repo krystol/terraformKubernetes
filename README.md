@@ -43,6 +43,14 @@ Installing kubectl
 sudo apt-get install -y kubectl
 ```
 
+Download and set the path for istio
+```
+wget https://github.com/istio/istio/releases/download/1.0.2/istio-1.0.2-linux.tar.gz
+tar zxvf istio-1.0.2-linux.tar.gz
+cd istio-1.0.2-linux.tar.gz
+export PATH=$PWD/bin:$PATH
+```
+
 Initialise and apply the terraform plan
 ```
 terraform init
