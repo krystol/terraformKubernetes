@@ -24,18 +24,15 @@ unzip terraform_0.11.8_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
 ```
 
-Installing helm
-```
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get > get_helm.sh
-chmod 700 get_helm.sh
-./get_helm.sh
-```
-
 Installing gcloud
 ```
 wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-222.0.0-linux-x86_64.tar.gz
 tar zxvf [file] google-cloud-sdk
 gcloud init
+2
+copy link into browser
+copy token into VM
+n
 ```
 
 Installing kubectl
