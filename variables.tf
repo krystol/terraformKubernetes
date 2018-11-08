@@ -13,3 +13,17 @@ variable "cluster_name" {
 	default = "sample-terraform-cluster"
 }
 
+variable "username" {
+	description = "Admin username for cluster"
+	default = "usernameformasterauth"
+}
+
+variable "password" {
+	description = "Admin password for cluster"
+	default = "passwordmustbe16characters"
+}
+
+variable "bastion_name" {
+	description = "Name of bastion host"
+	default = "thomas-bastion-host"
+}

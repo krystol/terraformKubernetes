@@ -14,20 +14,20 @@ resource "google_container_cluster" "gke_cluster" {
   }
 
     master_auth {
-    username = "usernameformasterauth"
-    password = "passwordmustbe16characters"
+    username = "${var.username}"
+    password = "${var.password}"
   }
 }
 
 resource "google_container_node_pool" "gke_node_pool" {
   name       = "first-pool"
-  region     = "us-east1-b"
+  region     = "${var.region}"
   cluster    = "${google_container_cluster.gke_cluster.name}"
   node_count = "4"
 }
 
 resource "google_compute_instance" "default" {
-  name         = "thomas-bastion-vm"
+  name         = "${var.bastion_name}"
   machine_type = "n1-standard-1"
   zone         = "us-east1-b"
 
@@ -68,7 +68,7 @@ resource "google_compute_instance" "default" {
     # authenticate to the kubernetes cluster
 	echo "${base64decode(google_container_cluster.gke_cluster.master_auth.0.cluster_ca_certificate)}" > ca.crt 
     kubectl config --kubeconfig=ci set-cluster k8s --server="https://${google_container_cluster.gke_cluster.endpoint}" --certificate-authority=ca.crt
-    kubectl config --kubeconfig=ci set-credentials admin --username="usernameformasterauth" --password="passwordmustbe16characters" 
+    kubectl config --kubeconfig=ci set-credentials admin --username="${var.username}" --password="${var.password}" 
     kubectl config --kubeconfig=ci set-context k8s-ci --cluster=k8s --namespace=default --user=admin
     kubectl config --kubeconfig=ci use-context k8s-ci
     export KUBECONFIG=ci 
