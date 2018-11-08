@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: header-end-user-to-v1
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - mygateway
+  http:
+  - match:
+    - headers:
+        end-user:
+          exact: jason
+    route:
+    - destination:
+        host: tradingservice
+        subset: v1
+        port:
+          number: 5000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: header-end-user-to-v2
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - mygateway
+  http:
+  - match:
+    - headers:
+        end-user:
+          exact: bill
+    route:
+    - destination:
+        host: tradingservice
+        subset: v2
+        port:
+          number: 5000
