@@ -13,4 +13,6 @@
 
 svc-account.json
 creds/*
+ssh/id_rsa
 .terraform/*
+.idea/*
